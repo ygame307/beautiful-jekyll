@@ -1,10 +1,10 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-# use local theme gem for testing
-gem "minimal-mistakes-jekyll", path: "../"
+require 'json'
+require 'open-uri'
+versions = JSON.parse(open('https://pages.github.com/versions.json').read)
 
-group :jekyll_plugins do
-  gem 'jekyll-algolia', '~> 1.0'
-end
+gem 'github-pages', versions['github-pages']
+gem 'rake'
 
-gem "wdm", "~> 0.1.0" if Gem.win_platform?
+gem 'pygments.rb'
